@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @listing.name %>
+</p>
+
+<p>
+  <strong>Image path:</strong>
+  <%= @listing.image_path %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @listing.address %>
+</p>
+
+<p>
+  <strong id="lat" data-lat="<%= @listing.lat %>" >Lat:</strong>
+  <%= @listing.lat %>
+</p>
+
+<p>
+  <strong id="long" data-long="<%= @listing.long %>">Long:</strong>
+  <%= @listing.long %>
+</p>
+
+<div style="width:500px;height:400px" id="map"></div>
+<script>
+ var lat = $("#lat").data("lat");
+ var long = $("#long").data("long");
+ function initMap() {
+     var mapDiv = document.getElementById('map');
+     var map = new google.maps.Map(mapDiv, {
+	 center: {lat: lat, lng: long},
+	 zoom: 8
+     });
+     }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script>
+
+
+<%= link_to 'Edit', edit_listing_path(@listing) %> |
+<%= link_to 'Back', listings_path %>
